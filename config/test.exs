@@ -9,7 +9,7 @@ config :game_of_life, GameOfLife.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "game_of_life_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "test_game_of_life#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
