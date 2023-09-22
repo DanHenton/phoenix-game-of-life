@@ -19,7 +19,6 @@ defmodule GameOfLifeWeb.ExperimentLive.Show do
   defp page_title(:edit), do: "Edit Experiment"
 
   defp empty?(grid) do
-
     is_nil(grid) || length(grid) == 0
   end
 
@@ -34,11 +33,11 @@ defmodule GameOfLifeWeb.ExperimentLive.Show do
 
         updated_experiment = update_experiment_grid(experiment, new_grid)
         {:noreply, assign(socket, experiment: updated_experiment)}
+
       _ ->
         {:noreply, socket}
     end
   end
-
 
   @impl true
   def handle_event("next_generation", %{"experiment_id" => experiment_id}, socket) do
@@ -47,9 +46,10 @@ defmodule GameOfLifeWeb.ExperimentLive.Show do
 
     case grid do
       _ ->
-          next_generation = GameOfLife.Services.Rules.next_generation(grid, experiment.width, experiment.height)
+        next_generation =
+          GameOfLife.Services.Rules.next_generation(grid, experiment.width, experiment.height)
 
-          updated_experiment = update_experiment_grid(experiment, next_generation)
+        updated_experiment = update_experiment_grid(experiment, next_generation)
         {:noreply, assign(socket, experiment: updated_experiment)}
     end
   end
@@ -58,7 +58,7 @@ defmodule GameOfLifeWeb.ExperimentLive.Show do
     grid = GameOfLife.Services.Grid.dehydrate_grid(new_grid)
 
     experiment
-      |> Experiments.Experiment.changeset(%{grid: grid})
-      |> GameOfLife.Repo.update!()
+    |> Experiments.Experiment.changeset(%{grid: grid})
+    |> GameOfLife.Repo.update!()
   end
 end

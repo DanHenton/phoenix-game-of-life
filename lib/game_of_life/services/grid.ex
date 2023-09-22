@@ -1,7 +1,7 @@
 defmodule GameOfLife.Services.Grid do
   require Logger
 
-  @spec create_grid(integer :: integer, any :: integer ) :: list
+  @spec create_grid(integer :: integer, any :: integer) :: list
   def create_grid(width, height) do
     Enum.map(1..width, fn _ ->
       Enum.map(1..height, fn _ ->
@@ -23,7 +23,7 @@ defmodule GameOfLife.Services.Grid do
   @spec display_grid(any) :: :ok
   def display_grid(grid) do
     Enum.each(grid, fn row ->
-      Enum.map(row, &(if &1 == 1, do: "🦠", else: " "))
+      Enum.map(row, &if(&1 == 1, do: "🦠", else: " "))
     end)
   end
 end

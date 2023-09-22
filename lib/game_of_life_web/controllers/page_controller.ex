@@ -8,9 +8,4 @@ defmodule GameOfLifeWeb.PageController do
     # so skip the default app layout.
     render(conn, :home, layout: false)
   end
-
-  # def experiment(conn, _params) do
-  #   Logger.info("Hello world! from experiment")
-  #   Grid.create_grid(9, 9)
-  # end
 end

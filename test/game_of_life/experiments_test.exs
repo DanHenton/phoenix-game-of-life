@@ -38,7 +38,9 @@ defmodule GameOfLife.ExperimentsTest do
       experiment = experiment_fixture()
       update_attrs = %{name: "some updated name", width: 43, height: 43, grid: []}
 
-      assert {:ok, %Experiment{} = experiment} = Experiments.update_experiment(experiment, update_attrs)
+      assert {:ok, %Experiment{} = experiment} =
+               Experiments.update_experiment(experiment, update_attrs)
+
       assert experiment.name == "some updated name"
       assert experiment.width == 43
       assert experiment.height == 43
@@ -47,7 +49,10 @@ defmodule GameOfLife.ExperimentsTest do
 
     test "update_experiment/2 with invalid data returns error changeset" do
       experiment = experiment_fixture()
-      assert {:error, %Ecto.Changeset{}} = Experiments.update_experiment(experiment, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Experiments.update_experiment(experiment, @invalid_attrs)
+
       assert experiment == Experiments.get_experiment!(experiment.id)
     end
 

@@ -18,6 +18,7 @@ defmodule GameOfLife.Experiments.Experiment do
     experiment
     |> cast(attrs, [:name, :width, :height, :grid])
     |> validate_required([:name, :width, :height])
+
     # |> grid_reset()
   end
 

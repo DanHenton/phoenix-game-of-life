@@ -8,7 +8,6 @@
   </:actions>
 </.header>
 
-
 <.list>
   <:item title="Name"><%= @experiment.name %></:item>
   <:item title="Width"><%= @experiment.width %></:item>
@@ -22,35 +21,42 @@
   </:item>
 </.list>
 
-<hr/>
-<br/>
+<hr />
+<br />
 
 <%= if empty?(@experiment.grid) do %>
-  <.button phx-click="start_experiment" phx-value-experiment_id={@experiment.id}> Start experiment </.button>
+  <.button phx-click="start_experiment" phx-value-experiment_id={@experiment.id}>
+    Start experiment
+  </.button>
 <% else %>
-  <.button phx-click="next_generation" phx-value-experiment_id={@experiment.id}> Next Generation </.button>
-   <table style="width: 100%">
-      <%= for row <- GameOfLife.Services.Grid.hydrate_grid(@experiment.grid, @experiment.width) do %>
-        <tr>
-          <%= for cell <- row do %>
+  <.button phx-click="next_generation" phx-value-experiment_id={@experiment.id}>
+    Next Generation
+  </.button>
+  <table style="width: 100%">
+    <%= for row <- GameOfLife.Services.Grid.hydrate_grid(@experiment.grid, @experiment.width) do %>
+      <tr>
+        <%= for cell <- row do %>
           <td>
             <%= if cell == 1 do %>
               🦠
             <% else %>
-
             <% end %>
           </td>
         <% end %>
-        </tr>
-      <% end %>
-    </table>
-  <br>
-
+      </tr>
+    <% end %>
+  </table>
+  <br />
 <% end %>
 
 <.back navigate={~p"/experiments"}>Back to experiments</.back>
 
-<.modal :if={@live_action == :edit} id="experiment-modal" show on_cancel={JS.patch(~p"/experiments/#{@experiment}")}>
+<.modal
+  :if={@live_action == :edit}
+  id="experiment-modal"
+  show
+  on_cancel={JS.patch(~p"/experiments/#{@experiment}")}
+>
   <.live_component
     module={GameOfLifeWeb.ExperimentLive.FormComponent}
     id={@experiment.id}
