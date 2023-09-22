@@ -15,7 +15,6 @@
   <:col :let={{_id, experiment}} label="Name"><%= experiment.name %></:col>
   <:col :let={{_id, experiment}} label="Width"><%= experiment.width %></:col>
   <:col :let={{_id, experiment}} label="Height"><%= experiment.height %></:col>
-  <:col :let={{_id, experiment}} label="Grid"><%= experiment.grid %></:col>
   <:action :let={{_id, experiment}}>
     <div class="sr-only">
       <.link navigate={~p"/experiments/#{experiment}"}>Show</.link>

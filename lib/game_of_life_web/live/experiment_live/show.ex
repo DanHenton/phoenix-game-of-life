@@ -23,13 +23,14 @@ defmodule GameOfLifeWeb.ExperimentLive.Show do
     is_nil(grid) || length(grid) == 0
   end
 
+  @impl true
   def handle_event("start_experiment", %{"experiment_id" => experiment_id}, socket) do
     experiment = Experiments.get_experiment!(experiment_id)
 
     case experiment.grid do
       nil ->
         # new_grid = GameOfLife.Services.Grid.create_grid(experiment.width, experiment.height)
-        new_grid = create_new_grid(experiment.width, experiment.height)
+        new_grid = GameOfLife.Services.Grid.create_grid(experiment.width, experiment.height)
 
         updated_experiment = update_experiment_grid(experiment, new_grid)
         {:noreply, assign(socket, experiment: updated_experiment)}
@@ -38,15 +39,26 @@ defmodule GameOfLifeWeb.ExperimentLive.Show do
     end
   end
 
-  defp create_new_grid(width, height) do
-    grid = GameOfLife.Services.Grid.create_grid(width, height)
 
-    GameOfLife.Services.Grid.dehydrate_grid(grid)
+  @impl true
+  def handle_event("next_generation", %{"experiment_id" => experiment_id}, socket) do
+    experiment = Experiments.get_experiment!(experiment_id)
+    grid = GameOfLife.Services.Grid.hydrate_grid(experiment.grid, experiment.width)
+
+    case grid do
+      _ ->
+          next_generation = GameOfLife.Services.Rules.next_generation(grid, experiment.width, experiment.height)
+
+          updated_experiment = update_experiment_grid(experiment, next_generation)
+        {:noreply, assign(socket, experiment: updated_experiment)}
+    end
   end
 
   defp update_experiment_grid(experiment, new_grid) do
+    grid = GameOfLife.Services.Grid.dehydrate_grid(new_grid)
+
     experiment
-      |> Experiments.Experiment.changeset(%{grid: new_grid})
+      |> Experiments.Experiment.changeset(%{grid: grid})
       |> GameOfLife.Repo.update!()
   end
 end

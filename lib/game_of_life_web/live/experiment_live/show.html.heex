@@ -28,9 +28,9 @@
 <%= if empty?(@experiment.grid) do %>
   <.button phx-click="start_experiment" phx-value-experiment_id={@experiment.id}> Start experiment </.button>
 <% else %>
-  <%!-- <%= inspect(GameOfLife.Services.Grid.hydrate_grid(@experiment.width, @experiment.height, @experiment.grid)) %> --%>
+  <.button phx-click="next_generation" phx-value-experiment_id={@experiment.id}> Next Generation </.button>
    <table>
-      <%= for row <- GameOfLife.Services.Grid.hydrate_grid(@experiment.width, @experiment.height, @experiment.grid) do %>
+      <%= for row <- GameOfLife.Services.Grid.hydrate_grid(@experiment.grid, @experiment.width) do %>
         <tr>
           <%= for cell <- row do %>
           <td>
@@ -45,7 +45,7 @@
       <% end %>
     </table>
   <br>
-  <.button> Next Generation </.button>
+
 <% end %>
 
 <.back navigate={~p"/experiments"}>Back to experiments</.back>
