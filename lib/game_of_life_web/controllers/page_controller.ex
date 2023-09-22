@@ -3,8 +3,6 @@ defmodule GameOfLifeWeb.PageController do
 
   use GameOfLifeWeb, :controller
 
-  import GameOfLife.Services.Grid
-
   def home(conn, _params) do
     # The home page is often custom made,
     # so skip the default app layout.
