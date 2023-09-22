@@ -29,7 +29,7 @@
   <.button phx-click="start_experiment" phx-value-experiment_id={@experiment.id}> Start experiment </.button>
 <% else %>
   <.button phx-click="next_generation" phx-value-experiment_id={@experiment.id}> Next Generation </.button>
-   <table>
+   <table style="width: 100%">
       <%= for row <- GameOfLife.Services.Grid.hydrate_grid(@experiment.grid, @experiment.width) do %>
         <tr>
           <%= for cell <- row do %>

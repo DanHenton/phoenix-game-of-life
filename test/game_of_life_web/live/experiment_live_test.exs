@@ -4,9 +4,9 @@ defmodule GameOfLifeWeb.ExperimentLiveTest do
   import Phoenix.LiveViewTest
   import GameOfLife.ExperimentsFixtures
 
-  @create_attrs %{name: "some name", width: 42, height: 42, grid: []}
-  @update_attrs %{name: "some updated name", width: 43, height: 43, grid: []}
-  @invalid_attrs %{name: nil, width: nil, height: nil, grid: []}
+  @create_attrs %{name: "some name", width: 42, height: 42}
+  @update_attrs %{name: "some updated name", width: 43, height: 43}
+  @invalid_attrs %{name: nil, width: nil, height: nil}
 
   defp create_experiment(_) do
     experiment = experiment_fixture()
