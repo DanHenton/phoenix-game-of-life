@@ -1,9 +1,10 @@
 name: Elixir CI
 
 on:
+  pull_request:
+    branches: [ "main", "uat" ]
   push:
-    branches:
-      - main # Change this to the default branch of your repository
+    branches: [ "uat" ]
 
 jobs:
   build:
@@ -16,7 +17,7 @@ jobs:
     - name: Set up Elixir
       uses: actions/setup-elixir@v1
       with:
-        elixir-version: '1.12' # Adjust to your desired Elixir version
+        elixir-version: '1.15.6'
 
     - name: Install dependencies
       run: mix deps.get
