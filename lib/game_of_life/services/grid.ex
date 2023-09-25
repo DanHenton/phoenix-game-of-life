@@ -3,8 +3,8 @@ defmodule GameOfLife.Services.Grid do
 
   @spec create_grid(integer :: integer, any :: integer) :: list
   def create_grid(width, height) do
-    Enum.map(1..width, fn _ ->
-      Enum.map(1..height, fn _ ->
+    Enum.map(1..height, fn _ ->
+      Enum.map(1..width, fn _ ->
         :rand.uniform(2)
       end)
     end)
@@ -20,10 +20,13 @@ defmodule GameOfLife.Services.Grid do
     List.flatten(grid)
   end
 
-  @spec display_grid(any) :: :ok
+  @spec display_grid(any) :: [list]
   def display_grid(grid) do
-    Enum.each(grid, fn row ->
-      Enum.map(row, &if(&1 == 1, do: "🦠", else: " "))
+    Enum.map(grid, fn row ->
+      col = Enum.map(row, &if(&1 == 1, do: " ", else: "🦠"))
+      Logger.info("\t #{col}")
+
+      col
     end)
   end
 end

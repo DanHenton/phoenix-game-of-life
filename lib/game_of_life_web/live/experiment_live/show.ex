@@ -47,7 +47,7 @@ defmodule GameOfLifeWeb.ExperimentLive.Show do
     case grid do
       _ ->
         next_generation =
-          GameOfLife.Services.Rules.next_generation(grid, experiment.width, experiment.height)
+          GameOfLife.Services.GameLogic.next_generation(grid)
 
         updated_experiment = update_experiment_grid(experiment, next_generation)
         {:noreply, assign(socket, experiment: updated_experiment)}
