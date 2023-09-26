@@ -25,6 +25,8 @@ defmodule GameOfLifeWeb.Router do
 
     live "/experiments/:id", ExperimentLive.Show, :show
     live "/experiments/:id/show/edit", ExperimentLive.Show, :edit
+
+    live "/live/longpoll", Live.Longpoll
   end
 
   # Other scopes may use custom stacks.
