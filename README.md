@@ -4,6 +4,10 @@ Welcome to basic implementation of Conway's game of life in phoenix!
 
 I have used this as an opportunity to learn elixir and phoenix!
 
+## Screenshots
+![Home](./docs/assets/home.png)
+![Show experiment](./docs/assets/show_experiment.png)
+
 ## Getting started
 
 To start your Phoenix server:
