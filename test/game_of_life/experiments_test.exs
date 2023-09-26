@@ -37,27 +37,23 @@ defmodule GameOfLife.ExperimentsTest do
     test "create_experiment/1 with invalid 0 width and height returns error changeset" do
       invalid_attrs = %{name: "some name", width: 0, height: 0, grid: []}
 
-      assert {:error, %Ecto.Changeset{} = subject } = Experiments.create_experiment(invalid_attrs)
+      assert {:error, %Ecto.Changeset{} = subject} = Experiments.create_experiment(invalid_attrs)
 
       assert subject.errors == [
-        height: {"is invalid",
-         [validation: :inclusion, enum: 1..50]},
-        width: {"is invalid",
-         [validation: :inclusion, enum: 1..50]}
-      ]
+               height: {"is invalid", [validation: :inclusion, enum: 1..50]},
+               width: {"is invalid", [validation: :inclusion, enum: 1..50]}
+             ]
     end
 
     test "create_experiment/1 with invalid 51 width and height returns error changeset" do
       invalid_attrs = %{name: "some name", width: 51, height: 51, grid: []}
 
-      assert {:error, %Ecto.Changeset{} = subject } = Experiments.create_experiment(invalid_attrs)
+      assert {:error, %Ecto.Changeset{} = subject} = Experiments.create_experiment(invalid_attrs)
 
       assert subject.errors == [
-        height: {"is invalid",
-         [validation: :inclusion, enum: 1..50]},
-        width: {"is invalid",
-         [validation: :inclusion, enum: 1..50]}
-      ]
+               height: {"is invalid", [validation: :inclusion, enum: 1..50]},
+               width: {"is invalid", [validation: :inclusion, enum: 1..50]}
+             ]
     end
 
     test "update_experiment/2 with valid data updates the experiment" do
