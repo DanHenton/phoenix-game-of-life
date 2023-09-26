@@ -17,12 +17,15 @@ defmodule GameOfLife.Services.GameLogic do
         live_neighbors = count_live_neighbors(grid, x, y, width, height)
 
         if cell == @alive do
+          # Under and Over population kills a cell
           if live_neighbors < 2 or live_neighbors > 3 do
             @dead
           else
+            # Stable population of 2-3 neighbors keep a cell alive
             @alive
           end
         else
+          # Reproduction of dead cell when there are three neighbors
           if live_neighbors == 3 do
             @alive
           else
