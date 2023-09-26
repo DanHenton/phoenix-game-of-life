@@ -4,13 +4,11 @@ defmodule GameOfLife.Services.GameLogic do
 
   @spec next_generation([list]) :: [list]
   def next_generation(grid) do
-    if Enum.empty?(grid) do
-      {:halt, []}
-    end
-
     height = length(grid)
     width = length(Enum.at(grid, 0))
 
+    case {width, height} do
+      {width, height} when width > 0 and height > 0 ->
     Enum.map(1..height, fn y ->
       Enum.map(1..width, fn x ->
         cell = Enum.at(Enum.at(grid, y - 1), x - 1)
@@ -34,6 +32,10 @@ defmodule GameOfLife.Services.GameLogic do
         end
       end)
     end)
+
+    _ ->
+      [[]]
+    end
   end
 
   defp count_live_neighbors(grid, x, y, width, height) do
@@ -54,4 +56,5 @@ defmodule GameOfLife.Services.GameLogic do
       cell == @alive
     end)
   end
+
 end

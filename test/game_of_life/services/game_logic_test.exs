@@ -4,7 +4,7 @@ defmodule GameOfLife.Service.GameLogicTest do
 
   alias GameOfLife.Services.GameLogic, as: GameLogic
 
-  describe "GameLogic specifics" do
+  describe "GameLogic rules" do
     test "Rule#1 Underpopulation" do
       grid = [
         [2, 1, 1, 1],
@@ -103,6 +103,10 @@ defmodule GameOfLife.Service.GameLogicTest do
       subject = GameLogic.next_generation(grid)
 
       assert subject == expected
+    end
+
+    test "#next_generation returns an empty grid when it receives an empty grid" do
+      assert GameLogic.next_generation([[]]) == [[]]
     end
   end
 
