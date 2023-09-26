@@ -7,9 +7,10 @@ import Config
 # Run `mix help test` for more information.
 config :game_of_life, GameOfLife.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "password",
   hostname: "localhost",
-  database: "game_of_life_test#{System.get_env("MIX_TEST_PARTITION")}",
+  port: 5432,
+  database: "test_game_of_life",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 

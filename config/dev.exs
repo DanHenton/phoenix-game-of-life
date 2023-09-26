@@ -3,9 +3,10 @@ import Config
 # Configure your database
 config :game_of_life, GameOfLife.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "password",
   hostname: "localhost",
-  database: "game_of_life_dev",
+  port: 5432,
+  database: "development_game_of_life",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

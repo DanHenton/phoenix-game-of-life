@@ -1,4 +1,6 @@
 defmodule GameOfLifeWeb.PageController do
+  require Logger
+
   use GameOfLifeWeb, :controller
 
   def home(conn, _params) do
